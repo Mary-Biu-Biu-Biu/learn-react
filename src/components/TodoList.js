@@ -16,7 +16,11 @@ class TodoList extends Component {
                     <Todo
                         key={todo.id}
                         {...todo}
-                        onClick={() => this.props.toggleTodo(todo.id)}
+                        onClick={() => {
+                            // 点击某个事项，就根据当前的id，dispatch action
+                            // 这里的toggleTodo是react-redux传进来的
+                            this.props.toggleTodo(todo.id)
+                        }}
                     />
                 ))}
             </ul>
@@ -55,12 +59,15 @@ const getVisibleTodos = (todos, filter) => {
 // 把state以props传递给目标组件TodoList
 // 它需要的state是：符合当前显示条件的待办数组（根据getVisibleTodos这个函数的结果）
 const mapStateToProps = (state) => ({
+    // 把redux全局state中存放的todos，经过当前filter进行过滤
     todos: getVisibleTodos(state.todos, state.filter),
 })
 
 // 把dispatch以props传递给目标组件TodoList
 // 待办列表需要的触发的dispatch是勾选事项的时候，根据id触发state的更改
 const mapDispatchToProps = (dispatch) => ({
+    // dispatch时redux的函数：dispatch中的toggleTodo函数是在action文件中定义好的action
+    // 现在把这个派送toggleTodo的函数作为props传递给组件
     toggleTodo: (id) => dispatch(toggleTodo(id)),
 })
 

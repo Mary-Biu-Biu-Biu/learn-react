@@ -8,6 +8,7 @@ class Link extends Component {
             <button
                 onClick={this.props.onClick}
                 disabled={this.props.active}
+                className="btn btn-default"
                 style={{
                     marginLeft: '4px',
                 }}

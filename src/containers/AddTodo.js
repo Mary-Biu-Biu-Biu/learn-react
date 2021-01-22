@@ -9,6 +9,7 @@ class AddTodo extends Component {
         return (
             <div>
                 <form
+                    className="form-inline"
                     onSubmit={(e) => {
                         // 点击发送按钮的时候，阻止默认事件(刷新页面)
                         // 并修剪字符，如果修剪后没有有效字符，则直接返回，没有什么需要处理的
@@ -23,8 +24,21 @@ class AddTodo extends Component {
                         input.value = ''
                     }}
                 >
-                    <input ref={(node) => (input = node)} />
-                    <button type="submit">Add Todo</button>
+                    <div className="form-group">
+                        <div className="input-group">
+                            <input
+                                ref={(node) => (input = node)}
+                                className="form-control"
+                            />
+                        </div>
+                    </div>
+                    <button
+                        type="submit"
+                        className="btn btn-default"
+                        style={{ margin: '10px' }}
+                    >
+                        Add Todo
+                    </button>
                 </form>
             </div>
         )
