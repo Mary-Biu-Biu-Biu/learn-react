@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 
 import Footer from './components/Footer'
-import AddTodo from './containers/AddTodo'
+import AddTodo from './components/AddTodo'
 import TodoList from './components/TodoList'
 
 class App extends Component {

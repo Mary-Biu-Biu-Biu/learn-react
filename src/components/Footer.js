@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 // ？？？？？？？？？？？？？？？？？？？？？？？？？
-import FilterLink from '../containers/FilterLink'
+import FilterButton from '../components/Link'
 
 // 在action/index.js中定义的常量
 import { VisibilityFilters } from '../actions/index'
@@ -12,15 +12,17 @@ class Footer extends Component {
             <div>
                 <span>Show: </span>
 
-                <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
+                <FilterButton filter={VisibilityFilters.SHOW_ALL}>
+                    All
+                </FilterButton>
 
-                <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>
+                <FilterButton filter={VisibilityFilters.SHOW_ACTIVE}>
                     Active
-                </FilterLink>
+                </FilterButton>
 
-                <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>
+                <FilterButton filter={VisibilityFilters.SHOW_COMPLETED}>
                     Completed
-                </FilterLink>
+                </FilterButton>
             </div>
         )
     }
