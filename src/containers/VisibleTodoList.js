@@ -18,7 +18,7 @@ const getVisibleTodos = (todos, filter) => {
 // 把state以props传递给目标组件TodoList
 // 它需要的state是：符合当前显示条件的待办数组（根据getVisibleTodos这个函数的结果）
 const mapStateToProps = (state) => ({
-    todos: getVisibleTodos(state.todos, state.visibilityFilter),
+    todos: getVisibleTodos(state.todos, state.filter),
 })
 
 // 把dispatch以props传递给目标组件TodoList

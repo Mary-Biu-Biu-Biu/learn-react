@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 // 单个待办事项组件
 class Todo extends Component {
@@ -17,6 +18,13 @@ class Todo extends Component {
             </li>
         )
     }
+}
+
+// 对props的检测
+Todo.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    completed: PropTypes.bool.isRequired,
+    text: PropTypes.string.isRequired,
 }
 
 export default Todo
