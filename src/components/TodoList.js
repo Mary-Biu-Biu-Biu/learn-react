@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import Todo from './Todo'
 import PropTypes from 'prop-types'
 
-// 需要显示的待办列表
+import { toggleTodo } from '../actions'
+import { connect } from 'react-redux'
+
+// class组件：需要显示的待办列表 =》 存放渲染模板
 class TodoList extends Component {
     render() {
         // 把所有props中收到的todo都发送给Todo组件进行渲染
@@ -23,6 +26,7 @@ class TodoList extends Component {
 
 // 对接收到的props进行类型检测
 TodoList.propTypes = {
+    // todos：所有可见的待办事项
     todos: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -30,7 +34,34 @@ TodoList.propTypes = {
             text: PropTypes.string.isRequired,
         }).isRequired
     ).isRequired,
+
+    // toggleTodo：勾选todo时进行的事件处理
     toggleTodo: PropTypes.func.isRequired,
 }
 
-export default TodoList
+// 一个function：根据当前的filter，给出符合条件的待办数组
+const getVisibleTodos = (todos, filter) => {
+    switch (filter) {
+        case 'SHOW_COMPLETED':
+            return todos.filter((t) => t.completed)
+        case 'SHOW_ACTIVE':
+            return todos.filter((t) => !t.completed)
+        case 'SHOW_ALL':
+        default:
+            return todos
+    }
+}
+
+// 把state以props传递给目标组件TodoList
+// 它需要的state是：符合当前显示条件的待办数组（根据getVisibleTodos这个函数的结果）
+const mapStateToProps = (state) => ({
+    todos: getVisibleTodos(state.todos, state.filter),
+})
+
+// 把dispatch以props传递给目标组件TodoList
+// 待办列表需要的触发的dispatch是勾选事项的时候，根据id触发state的更改
+const mapDispatchToProps = (dispatch) => ({
+    toggleTodo: (id) => dispatch(toggleTodo(id)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
