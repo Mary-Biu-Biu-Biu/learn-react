@@ -7,5 +7,6 @@
 - 使用bootstrap简易美化
 
 [react-redux练习](https://github.com/Mary-Biu-Biu-Biu/learn-react/tree/react-redux)
+- [总结文档](https://www.wolai.com/pug4JMSgnEUhTsWMu8CxNo)
 - 使用prop-types进行props检测
 - 使用ref控制dom
