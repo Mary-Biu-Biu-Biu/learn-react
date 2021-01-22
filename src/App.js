@@ -7,11 +7,6 @@ import AddTodo from './components/AddTodo'
 import TodoList from './components/TodoList'
 
 class App extends Component {
-    constructor(props) {
-        super(props)
-        this.state = { messages: [], isLoaded: false }
-    }
-
     render() {
         return (
             <div>
